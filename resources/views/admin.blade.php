@@ -79,34 +79,7 @@ img{
                                 </button>
         
         </form>
-                        <li class="dropdown dropdown-animated scale-left">
-                            <a href="javascript:void(0);" data-toggle="dropdown">
-                                <i class="anticon anticon-bell notification-badge"></i>
-                            </a>
-                            <div class="dropdown-menu pop-notification">
-                                
-                                <div class="relative">
-                                    <div class="overflow-y-auto relative scrollable" style="max-height: 300px">
-                                        <a href="javascript:void(0);" class="dropdown-item d-block p-15 border-bottom">
-                                            <div class="d-flex">
-                                                <div class="avatar avatar-blue avatar-icon">
-                                                    <i class="anticon anticon-mail"></i>
-                                                </div>
-                                                
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0);" class="dropdown-item d-block p-15 border-bottom">
-                                            <div class="d-flex">
-                                                <div class="avatar avatar-cyan avatar-icon">
-                                                    <i class="anticon anticon-user-add"></i>
-                                                </div>
-                                               
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        
                         <li class="dropdown dropdown-animated scale-left">
                         @guest
                             

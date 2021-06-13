@@ -56,28 +56,11 @@ h6{
 		<label>Instituição</label><input type="text" class="form-control" id="Instituicao" name="Instituicao" placeholder="digite a Instituicao visada" value="{{old('Instituicao')}}">
 		</div>
 		<div class="form-group">
-
-		<select name="ministerio" class="form-control"  aria-label=".form-select-lg example"> 
-		<option value="minec">Ministerio dos Negocios Estrangeiros e Cooperacao</option>
-		<option value="mdn">Ministerio da Defesa Nacional</option>
-		<option value="mef">Ministerio da Economia e Financas</option>
-		<option value="mint">Ministerio do Interior</option>
-		<option value="mtc">Ministerio dos Transportes e Comunicacoes</option>
-		<option value="mined">Ministerio da Educacao e Desevolvimento humano</option>
-		<option value="micultur">Ministerio da Cultura e Turismo</option>
-		<option value="agricultura">Ministerio da agricultura e Desevolvimento Rural</option>
-		<option value="mitess">Ministerio do Trabalho, Emprego e Seguranca Social</option>
-		<option value="misau">Ministerio da Saude</option>
-		<option value="mgcas">Ministerio do Genero, Crianca e Accao Social</option>
-		<option value="mitader">Ministerio da Terra e Ambiente</option>
-		<option value="maefp">Ministerio da Administracao Estatal e Funcao Publica</option>
-		<option value="mireme">Ministerio dos Recursos Minerais e Energia</option>
-		<option value="mic">Ministerio da Industria e Comercio</option>
-		<option value="mjcr">Ministerio da Justica e Assuntos Constitucionais e Religiosos</option>
-		<option value="mctestp">Ministerio da Ciencia e Tecnologia, Ensino Superior e Tecnico Profissional</option>
-		<option value="mico">Ministerio dos Combatentes</option>
-
+		<select id="selecao" name="ministerio" class="form-control"  aria-label=".form-select-lg example"> 
+             
+		</select>		
 		</div>
+	
 		<div >
 		
 		</select>
@@ -106,8 +89,11 @@ h6{
 <script src="{{asset('js/validate.js')}}" type="text/javascript" async="true" defer></script>
 <script src="{{asset('js/jquery-ui.js')}}" type="text/javascript" async="true" defer></script>
 <script src="{{asset('js/jquery.form.min.js')}}" type="text/javascript" ></script>
+<script src="{{asset('js/mini.js')}}" type="text/javascript" async="true" defer></script>
 <script src="{{asset('js/ajax.js')}}" type="text/javascript" async="true" defer></script>
 <script  type="text/javascript" >
+
+
 var path="{{('autocomplete')}}";
 var resi="{{('residenciaAutocomplete')}}";
 var na="{{('nacaoAutocomplete')}}";
@@ -145,7 +131,6 @@ return $.get(na,(terms:terms), function(data){
 	}
 
 });
-
 
 
 </script>

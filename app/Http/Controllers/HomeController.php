@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\models\requerente;
+use App\Models\models\ministerio;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +71,7 @@ class HomeController extends Controller
     	
 
     }
-
+   
     public function actualizar(){
 
         if(Auth::check()){
@@ -90,6 +91,14 @@ class HomeController extends Controller
 
         }
 
+    }
+
+    public function autocomplete(){
+
+        
+      $N=requerente::select("nome")->get();
+      return response()->json($N);
+     //   dd($N);
     }
 
     public function procurar(Request $request){
@@ -149,7 +158,8 @@ public function listar(){
     if(Auth::check()){
 
         $user=DB::table('users')->get();
-        return view('usuarios',['user'=>$user]);
+        $mini=DB::table('ministerios')->get();
+        return view('usuarios',['user'=>$user,'ministerio'=>$mini]);
     }
 
 
@@ -158,6 +168,16 @@ public function apagar($codigo){
 
     if(Auth::check()){
         $user=DB::table('users')->where('id','=',$codigo)->delete();
+        
+        return redirect()->back();
+    }
+
+
+}
+public function apagarm($codigo){
+
+    if(Auth::check()){
+        $user=DB::table('ministerios')->where('id','=',$codigo)->delete();
         
         return redirect()->back();
     }
@@ -178,4 +198,17 @@ public function criar(Request $request){
     return json_encode("Cadatrado com sucesso");
 
 }
+
+public function criarM(Request $request){
+
+    $user = new Ministerio();
+    $user->nome = $request->input('nome');
+    $user->email=$request->input('sigla');
+  
+    $user->save();   
+    
+    return json_encode("Cadatrado com sucesso");
+
+}
+
 }

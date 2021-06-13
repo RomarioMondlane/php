@@ -39,11 +39,10 @@ class RequerenteController extends Controller
             $requerente->sugestao=$request->input('sugestao');
             $requerente->Estado=$estado;
             $requerente->save();
-            $this->Sms();
-            //$this->notificar();
+            //$this->Sms();
+            $this->notificar();
             return json_encode("Enviado com sucesso");
-         	//requerente::create($input);
-      
+         	
            
     }
     
@@ -66,27 +65,43 @@ class RequerenteController extends Controller
   }
 
   public function notificar(){
-   //$user=user::find(17);
-   //dd(User::find(17));
-   //
+  
   $ordem= DB::table('users')->orderBy('id','DESC')->first();
- // User::notify(new NotificationsClass);
+ 
 $limite=$ordem->id;
 
 $cont=1;
-
- //$user=DB::table('users')->get();
-//for($cont=1;$cont<$limite;$cont++){  
-while($cont<$limite){
+ 
+while($cont<=$limite){
   $user=User::find($cont);
-  //echo $user;
+
   if($user){
     User::find($cont)->notify(new NotificationsClass);
   
  }
  $cont=$cont+1;
 }
- return "Notificados";
+}
+
+public function marcarComoLida(){
+
+  $ordem= DB::table('users')->orderBy('id','DESC')->first();
+ 
+$limite=$ordem->id;
+
+$cont=1;
+ 
+ 
+while($cont<=$limite){
+  $user=User::find($cont);
+  if($user){
+    $user->notifications()->delete();
+   // $user->unreadNotifications->markAsRead();
+  }
+ $cont=$cont+1;
+}
+
+return redirect()->back();
 }
 
 

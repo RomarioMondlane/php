@@ -1,25 +1,132 @@
-
 $.ajaxSetup({
-    Headers:{
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  Headers:{
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 
 
-    }
+  }
 
 
 
 });
 
 
+$(function(){
+  $('form[name="requisicao"]').submit(function(event){
+  //  console.log(document.getElementById("nome"));        
+
+event.preventDefault();
+  $.ajax({
+    url:"store",
+    type:"post",
+    beforeSend:function(xhr){
+          var token=$('meta[name="csrf_token"]').attr('content');
+          if(token){
+
+              return xhr.setRequestHeader('X-CSRF-TOKEN',token);
+          }
+  
+
+    },
+    data: $(this).serialize(),
+    dataType: 'json',
+    
+    success: function(response){
+      Swal.fire({
+
+
+        title:'Aviso',
+        text:'Enviado com sucesso',
+        icon:'Success',
+        confirmButtonText:'OK'
+        
+
+    })},
+
+    error: function(response){
+     
+      Swal.fire({
+        title:'Aviso',
+        text:'Erro ao enviar',
+        icon:'error',
+        confirmButtonText:'OK'
+    })
+    }
+
+  });
+
+  }
+  )
+
+});
+
+
+$(function(){
+  $('form[name="CriarMini"]').submit(function(event){
+
+  event.preventDefault();
+  
+  
+  $.ajax({
+    url:"criarMini",
+    type:"post",
+    beforeSend:function(xhr){
+          var token=$('meta[name="csrf_token"]').attr('content');
+          if(token){
+
+              return xhr.setRequestHeader('X-CSRF-TOKEN',token);
+          }
+  
+
+    },
+    data: $(this).serialize(),
+    dataType: 'json',
+    success: function(response){
+       Swal.fire({
+
+
+          title:'Aviso',
+          text:response,
+          icon:'Success',
+          confirmButtonText:'OK'
+          
+
+      })},
+    
+    error: function(){
+
+      Swal.fire({
+        title:'Aviso',
+        text:'Erro ao Cadastrar',
+        icon:'error',
+        confirmButtonText:'OK'
+        
+
+    })
+
+
+
+    }
+
+
+
+  });
+  
+
+
+
+  }
+  )
+
+
+
+});
+
 
 $(function(){
     $('form[name="formulario"]').submit(function(event){
 
     event.preventDefault();
-  //   alert("ola");
- 
-   // var p=$(this).find('input#pesquisa').val();
-    //alert(p);
+  
     $.ajax({
       url:"pesquisar",
       type:"post",
@@ -58,57 +165,22 @@ $(function(){
         console.log(response);
         document.getElementById("preencher").innerHTML = `   
        <p ><b>Codigo nao existe</b></p>
-        
-        
+              
               
         `
        
-
-
-
       }
-
-
 
     });
     
-
-
-
     }
     )
 
-
-
 });
 
-
-
-$("#envio").validate({
-	errorElement: 'h6',
-	rules:{
-		nome:"required",
-		BI:"required", length:13,
-		Nacionalidade:"required",
-		Residencia:"required",minlength:5, 
-		tel:"required",
-		sugestao:"required",
-
-	},
-	messages:{
-		nome:"Campo obrigatorio",
-		BI:"Formato invalido",
-		Nacionalidade:"Campo obrigatorio",
-		Residencia:"Campo obrigatorio", 
-		tel:"Formato invalido",
-		sugestao:"Campo obrigatorio",
-
-
-
-	}
-
-});
   
+
+
 $("#cad").validate({
 	errorElement: 'h6',
 	rules:{
@@ -129,70 +201,6 @@ $("#cad").validate({
 	}
 
 });
-
-
-
-
-
-$(function(){
-    $('form[name="requisicao"]').submit(function(event){
-    //  console.log(document.getElementById("nome"));        
-  
-event.preventDefault();
-    $.ajax({
-      url:"store",
-      type:"post",
-      beforeSend:function(xhr){
-            var token=$('meta[name="csrf_token"]').attr('content');
-            if(token){
-
-                return xhr.setRequestHeader('X-CSRF-TOKEN',token);
-            }
-    
-
-      },
-      data: $(this).serialize(),
-      dataType: 'json',
-      
-      success: function(response){
-        Swal.fire({
-
-
-          title:'Aviso',
-          text:'Enviado com sucesso',
-          icon:'Success',
-          confirmButtonText:'OK'
-          
-
-      })},
-
-      error: function(response){
-       
-        Swal.fire({
-          title:'Aviso',
-          text:'Erro ao enviar',
-          icon:'error',
-          confirmButtonText:'OK'
-          
-
-      })
-
-      }
-
-
-
-    });
-    
-
-
-
-    }
-    )
-
-
-
-});
-
 
 
 $(function(){
@@ -307,63 +315,5 @@ $(function(){
 
 
 
-$(function(){
-  $('form[name="CriarUsuer"]').submit(function(event){
-
-  event.preventDefault();
-  
-  
-  $.ajax({
-    url:"criar",
-    type:"post",
-    beforeSend:function(xhr){
-          var token=$('meta[name="csrf_token"]').attr('content');
-          if(token){
-
-              return xhr.setRequestHeader('X-CSRF-TOKEN',token);
-          }
-  
-
-    },
-    data: $(this).serialize(),
-    dataType: 'json',
-    success: function(response){
-       Swal.fire({
 
 
-          title:'Aviso',
-          text:response,
-          icon:'Success',
-          confirmButtonText:'OK'
-          
-
-      })},
-    
-    error: function(){
-
-      Swal.fire({
-        title:'Aviso',
-        text:'Erro ao enviar! Provavelmente o email ja foi registado',
-        icon:'error',
-        confirmButtonText:'OK'
-        
-
-    })
-
-
-
-    }
-
-
-
-  });
-  
-
-
-
-  }
-  )
-
-
-
-});

@@ -40,12 +40,14 @@
   
 <form  name="pesquisar" class="pesquisa">
      @csrf
-  <input name="pesquisa" value="{{csrf_token()}}" id="pesquisa"  type="number" class="form-control rounded" placeholder="Search" aria-label="Search"
+  <input name="pesquisa" value="" id="pes"  type="text" class="form-control rounded" placeholder="Search" aria-label="Search"
     aria-describedby="search-addon" >
   <button type="submit" id="btn"   ><span class="input-group-text border-0" id="search-addon">
     <i class="fas fa-search"></i>
   </span></button>
+ 
   </form>
+  <ui></ui>
 </div>
 
 <div id="pr" >
@@ -118,6 +120,7 @@
 <script src="{{asset('js/jquery-3.6.0.min.js')}}" type="text/javascript" ></script>
 <script src="{{asset('js/jquery.form.min.js')}}" type="text/javascript" ></script>
 <script src="{{asset('js/ajax.js')}}" type="text/javascript" async="true" defer></script>
+<script src="{{asset('js/Pesquisa.js')}}" type="text/javascript" async="true" defer></script>
 
 <script language="javascript" type="text/javascript">
 $(function(){

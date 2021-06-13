@@ -17,9 +17,12 @@ use App\Notifications\NotificationsClass;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route:: get('/',fn()=> view('lay'));
-Route:: get('/peticoes',fn()=> view('comunidade'));
+//Route:: get('/',fn()=> view('lay'));
+Route:: get('/peticoes',fn()=> view('introducao'));
 Route:: get('/usuarios',fn()=> view('usuarios'));
+Route:: get('/',fn()=> view('introducao'));
+
+
 Route:: get('/teste',fn()=> view('requerente'));
 Route:: get('/estado',fn()=> view('estado'));
 Route:: post('store',[RequerenteController :: class,'store']);
@@ -27,7 +30,7 @@ Route:: post('/autocomplete',[RequerenteController :: class,'autocomplete']);
 Route:: post('/residenciaAutocomplete',[RequerenteController :: class,'ResidenciaAutocomplete']);
 
 Route:: post('/nacaoAutocomplete',[RequerenteController :: class,'NacaoAutocomplete']);
-Route:: get('/admin',fn()=> view('admin'));
+Route:: get('/admin',fn()=> view('adminIntro'));
 
 Route::get('/cadastrar',function (){
     if(Auth::check()){
@@ -44,8 +47,12 @@ Route::get('sms', [App\Notifications\NotificationsClass::class,'Sms']);
 
 Route::get('notificar', [RequerenteController::class,'notificar']);
 
-Auth::routes();
+Route::get('marcar', [RequerenteController::class,'marcarComoLida']);
+Route::get('/select', [App\Http\Controllers\selectController::class, 'combox']);
 
+
+Auth::routes();
+Route::get('/autocompletar', [App\Http\Controllers\HomeController::class, 'autocomplete']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/imprimir/{id}', [App\Http\Controllers\ImprimirController::class, 'imprimir']);
 Route::get('/print', [App\Http\Controllers\imprimirPeticoesController::class, 'imprimir']);
@@ -54,9 +61,13 @@ Route::get('/pedidos', [App\Http\Controllers\HomeController::class, 'redireciona
 Route::post('/pesqui', [App\Http\Controllers\HomeController::class, 'ver']);
 Route::get('/listar', [App\Http\Controllers\HomeController::class, 'listar']);
 Route::get('/apagar/{id}', [App\Http\Controllers\HomeController::class, 'apagar']);
+Route::get('/apagarm/{id}', [App\Http\Controllers\HomeController::class, 'apagarm']);
+
 Route::get('/actualizar', [App\Http\Controllers\HomeController::class, 'actualizar']);
 Route::post('/pesquisaa', [App\Http\Controllers\HomeController::class, 'procurar']);
 Route::post('/criar', [App\Http\Controllers\HomeController::class, 'criar']);
+Route::post('/criarMini', [App\Http\Controllers\HomeController::class, 'criarM']);
+
 Route::post('/actu/{id}', [App\Http\Controllers\EstadoController::class, 'actualizar']);
 Route::post('/pesquisar', [App\Http\Controllers\EstadoController::class, 'ver']);
 

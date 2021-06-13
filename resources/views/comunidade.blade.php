@@ -140,11 +140,12 @@ img{
                 
                 <!-- Content Wrapper START -->
                 <div class="main-content">
+                
                 @yield('main-content')
                     <!-- Content goes Here -->
                 </div>
                 <!-- Content Wrapper END -->
-
+                
                 <!-- Footer START -->
                 <footer class="footer">
                     <div class="footer-content" >

@@ -31,7 +31,7 @@ class NotificationsClass extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        return ['database'];
     }
 
     /**
@@ -54,10 +54,10 @@ class NotificationsClass extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            'data'=>'Nova peticao recebida!'
+            'data'=>"Nova peticao recebida, ".now()
         ];
     }
 

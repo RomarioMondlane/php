@@ -81,10 +81,11 @@ img{
                             </button>
                             @endguest
     </form>  @can('opcoes')
+                    
                     <li class="dropdown dropdown-animated scale-left">
                         <a href="javascript:void(0);" data-toggle="dropdown">
                             <i class="anticon anticon-bell notification-badge"></i>
-                            <span class="badge badge-light" style="color:red">3</span>
+                            <span class="badge badge-light" style="color:red">N</span>
                         </a>
                         
                     <!-- Notification -->
@@ -96,13 +97,11 @@ img{
                                     
                               <!-- Notificaton content -->
                                     <a href="javascript:void(0);" class="dropdown-item d-block p-15 border-bottom">
-                                        <div class="d-flex">
+                                        <div > <a href="marcar">
                                           <div id="notificar">
                                           @foreach(auth()->user()->notifications as $notification)
-                                           
-                                          <p> {{$notification->data['data']}}</p><hr>     
-
-                                          @endforeach     
+                                        {{$notification->data['data']}}<hr>                                           @endforeach
+                                          </a>       
 
                                                 
                                             </div>
