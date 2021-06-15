@@ -8,7 +8,50 @@ $.ajaxSetup({
 
 
 });
+$(document).ready(function(){
+	
+	$('#selecao').on('change', function(){
 
+   let sigla=$(this).val();
+  
+   $('#insituto').empty();	
+   $('#insituto').append(`<option value="0" disabled selected> Carregando...</option>`);
+   $.ajax({
+      type: "GET",
+      url: "popular/"+sigla,
+      success: function(response){
+       var response=JSON.parse(response);
+       console.log(response);
+        
+    $('#insituto').empty();	
+    $('#insituto').append(`<option value="0" disabled selected>-Selecione a instituicao-</option>`);
+    response.forEach(element =>{
+      $('#insituto').append(`<option value="${element['nome']}" >${element['nome']}</option>`);
+      
+
+
+    });
+        
+    },
+      error: function(response){
+        console.log(response);
+      }
+
+
+
+
+   }); 
+
+
+
+	});
+
+
+
+
+
+
+});
 
 $(function(){
   $('form[name="requisicao"]').submit(function(event){
@@ -59,67 +102,6 @@ event.preventDefault();
 
 });
 
-
-$(function(){
-  $('form[name="CriarMini"]').submit(function(event){
-
-  event.preventDefault();
-  
-  
-  $.ajax({
-    url:"criarMini",
-    type:"post",
-    beforeSend:function(xhr){
-          var token=$('meta[name="csrf_token"]').attr('content');
-          if(token){
-
-              return xhr.setRequestHeader('X-CSRF-TOKEN',token);
-          }
-  
-
-    },
-    data: $(this).serialize(),
-    dataType: 'json',
-    success: function(response){
-       Swal.fire({
-
-
-          title:'Aviso',
-          text:response,
-          icon:'Success',
-          confirmButtonText:'OK'
-          
-
-      })},
-    
-    error: function(){
-
-      Swal.fire({
-        title:'Aviso',
-        text:'Erro ao Cadastrar',
-        icon:'error',
-        confirmButtonText:'OK'
-        
-
-    })
-
-
-
-    }
-
-
-
-  });
-  
-
-
-
-  }
-  )
-
-
-
-});
 
 
 $(function(){

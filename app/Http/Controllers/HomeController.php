@@ -62,12 +62,7 @@ class HomeController extends Controller
 
                 }
         }
-        //  dd($Requerente);
-        //$user ->assignRole('writer');
-
-       // dd($Requerente);
-        
-        //$Requerente=requerente::get();
+    
     	
 
     }
@@ -159,7 +154,9 @@ public function listar(){
 
         $user=DB::table('users')->get();
         $mini=DB::table('ministerios')->get();
-        return view('usuarios',['user'=>$user,'ministerio'=>$mini]);
+        $inst=DB::table('instituicaos')->get();
+        
+        return view('usuarios',['user'=>$user,'ministerio'=>$mini,'inst'=>$inst]);
     }
 
 
@@ -185,6 +182,16 @@ public function apagarm($codigo){
 
 }
 
+public function apagarI($codigo){
+
+    if(Auth::check()){
+        $user=DB::table('instituicaos')->where('id','=',$codigo)->delete();
+        
+        return redirect()->back();
+    }
+
+
+}
 public function criar(Request $request){
 
     $pass=Hash::make($request->input('senha'));
@@ -201,13 +208,13 @@ public function criar(Request $request){
 
 public function criarM(Request $request){
 
-    $user = new Ministerio();
-    $user->nome = $request->input('nome');
-    $user->email=$request->input('sigla');
+    $mini = new Ministerio();
+    $mini->nome = $request->input('nome');
+    $mini->sigla=$request->input('sigla');
   
-    $user->save();   
+    $mini->save();   
     
-    return json_encode("Cadatrado com sucesso");
+    return json_encode("Criado com sucesso");
 
 }
 

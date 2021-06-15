@@ -67,7 +67,7 @@ img{
                        
                     </ul>
                     <ul class="nav-right">
-
+                    @guest
                     <form  method="POST" action="{{ route('login') }}">
                     @csrf
                        
@@ -79,7 +79,7 @@ img{
                                 </button>
         
         </form>
-                        
+        @endguest
                         <li class="dropdown dropdown-animated scale-left">
                         @guest
                             

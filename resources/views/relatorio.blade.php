@@ -46,7 +46,7 @@
 <p style="text-align:center">{{$requerente->DatadeEnvio}}</p>
 <footer><br><br>
 <p>Contato</p>
-<p valign="right"><b>{{$requerente->Tel}}</b></p>
+<p valign="right"><b>+{{$requerente->Tel}}</b></p>
 </footer>
 
 </div>

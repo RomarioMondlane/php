@@ -27,7 +27,7 @@ h6{
     <div class="card-header" style="background-color: yellowgreen"><b>Preencha o Formulário abaixo</b></div>
 <div class="formulario">
 
-	<form name="requisicao" id="envio" >
+	<form name="requisicao" id="envio" data-funcoes-url="popular">
 		@csrf
 				
 		<div class="form-group">
@@ -51,21 +51,27 @@ h6{
 		<div class="form-group">
 		<label>Telefone</label><input class="form-control" type="text" name="tel" placeholder="digite seu contato de Telefone" value="{{old('Telefone')}}">
 		</div>
-	
 		<div class="form-group">
-		<label>Instituição</label><input type="text" class="form-control" id="Instituicao" name="Instituicao" placeholder="digite a Instituicao visada" value="{{old('Instituicao')}}">
-		</div>
-		<div class="form-group">
+		<label>Ministério</label>
+		@isset($ministerio)
 		<select id="selecao" name="ministerio" class="form-control"  aria-label=".form-select-lg example"> 
-             
-		</select>		
-		</div>
-	
-		<div >
+		<option >-Selecionar Ministerio-</option>
+		@foreach($ministerio as $ministerios)
 		
+		<option value={{$ministerios->sigla}}>{{$ministerios->nome}}</option>
+		
+		@endforeach
 		</select>
-		
+		@endisset		
 		</div>
+		<div class="form-group">
+		<label>Instituição</label>
+		<select id="insituto" name="insituto" class="form-control"  aria-label=".form-select-lg example"> 
+		<div id="p">
+		</div>	
+		</select>
+		</div>
+		
 		<div  class="form-group">
 		<select name="tipoPeticao" class="form-control"  aria-label=".form-select-lg example"> 
 		<option value="Sugestao">Sugestao</option>
@@ -89,9 +95,11 @@ h6{
 <script src="{{asset('js/validate.js')}}" type="text/javascript" async="true" defer></script>
 <script src="{{asset('js/jquery-ui.js')}}" type="text/javascript" async="true" defer></script>
 <script src="{{asset('js/jquery.form.min.js')}}" type="text/javascript" ></script>
-<script src="{{asset('js/mini.js')}}" type="text/javascript" async="true" defer></script>
+<script src="{{asset('js/select.js')}}" type="text/javascript" ></script>
 <script src="{{asset('js/ajax.js')}}" type="text/javascript" async="true" defer></script>
 <script  type="text/javascript" >
+
+
 
 
 var path="{{('autocomplete')}}";
@@ -116,7 +124,7 @@ return $.get(resi,(terms:terms), function(data){
 
 
 	return process(data);
-})
+}),
 	}
 
 });
@@ -131,6 +139,18 @@ return $.get(na,(terms:terms), function(data){
 	}
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>

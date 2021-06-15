@@ -32,7 +32,7 @@ class RequerenteController extends Controller
             $requerente->Residencia=$request->input('Residencia');
             $requerente->tel=$contato;
             
-            $requerente->Instituicao=$request->input('Instituicao');
+            $requerente->Instituicao=$request->input('insituto');
             $requerente->Ministerio=$request->input('ministerio');
             $requerente->DatadeEnvio = now();
             $requerente->tipoPeticao=$request->input('tipoPeticao');
